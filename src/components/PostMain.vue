@@ -1,7 +1,11 @@
 <script>
 import axios from 'axios';
+import PostCard from './PostCard.vue';
 export default {
     name: "PostMain",
+    components:{
+        PostCard,
+    },
     data(){
         return{
             posts: [],
@@ -14,7 +18,7 @@ export default {
             this.loading = true,
             axios.get(`${this.BaseUrl}/api/posts`).then((response)=> {
                 if(response.data.success){
-                    this.post = response.data.results;
+                    this.posts = response.data.results;
                     this.loading = false
                 }
                 else{
@@ -38,17 +42,16 @@ export default {
                 <h2>elenco progetti</h2>
             </div>
             <div class="col-12">
-                <div class="d-flex justify-content-center" v-if="loading">
+                <div class="d-flex justify-content-center" v-if="loading == true">
                     <div class="loader"></div>
                 </div>
                 <div class="d-flex flex-wrap" v-else>
-                    <div class="card" v-for="post in posts" :key= "post.id">
-                        <div class="card-body">
-                            <div class="card-img-top">
-                                <div class="img-fluid"></div>
-                            </div>
-                        </div>
+                    <div v-for="post in posts" :key= "post.id" >
+                        <PostCard   :post="post" :BaseUrl="BaseUrl">
+                       
+                        </PostCard>
                     </div>
+                    
                 </div>
             </div>
         </div>
