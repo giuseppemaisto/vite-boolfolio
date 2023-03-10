@@ -1,16 +1,17 @@
 <script>
-  import PostMain from './components/PostMain.vue'
-
+  import Header from './components/Header.vue'
   export default{
     components:{
-      PostMain
+      Header
     }
   }
+
 </script>
 
 <template>
   <div>
-    <PostMain></PostMain>
+    <Header></Header>
+    <route-view></route-view>
   </div>
   
 </template>

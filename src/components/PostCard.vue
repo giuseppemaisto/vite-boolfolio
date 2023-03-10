@@ -17,7 +17,7 @@
                 <h3>{{ post.title }}</h3>
                 <div class="d-flex">
                     <strong>categoria:  </strong>
-                    <p class="badge " v-if="post.type">
+                    <p class="" v-if="post.type">
                         {{ post.type.name }}
                     </p>
                     <p v-else>
