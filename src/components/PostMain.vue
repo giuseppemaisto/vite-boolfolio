@@ -66,7 +66,7 @@ export default {
                             <li :class="currentPage == 1 ? 'disabled' :'page-item'">
                             <button class="page-link btn btn-success" @click="getPost(currentPage - 1)">Prev</button>
                             </li>
-                            <li :class="currentPage == i ? 'disabled' : 'page-item'" v-for="i in lastPage" v-bind:key="i">
+                            <li :class="currentPage == i ? 'disabled' : 'page-item'" v-for="i in lastPage" :key="i">
                             <button class="page-link " @click="getPost(i)">{{ i }}</button>
                             </li>
 
