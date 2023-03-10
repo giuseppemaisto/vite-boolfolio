@@ -10,15 +10,19 @@ export default {
         return{
             posts: [],
             loading: true,
-            BaseUrl:"http://127.0.0.1:8000"
+            BaseUrl:"http://127.0.0.1:8000",
+            currentPage: 1,
+            lastPage: null,
         }
     },
     methods: {
-        getPost(){
+        getPost(post_page){
             this.loading = true,
-            axios.get(`${this.BaseUrl}/api/posts`).then((response)=> {
+            axios.get(`${this.BaseUrl}/api/posts`, {params: {page: post_page}}).then((response)=> {
                 if(response.data.success){
-                    this.posts = response.data.results;
+                    this.posts = response.data.results.data;
+                    this.currentPage = response.data.results.current_page;
+                    this.lastPage = response.data.results.last_page;
                     this.loading = false
                 }
                 else{
@@ -29,7 +33,7 @@ export default {
         }
     },
     mounted(){
-        this.getPost()
+        this.getPost(this.currentPage)
     }
 };
 </script>
@@ -45,13 +49,33 @@ export default {
                 <div class="d-flex justify-content-center" v-if="loading == true">
                     <div class="loader"></div>
                 </div>
-                <div class="d-flex flex-wrap" v-else>
-                    <div v-for="post in posts" :key= "post.id" >
+                <div class="col-12 d-flex  flex-wrap" v-else>
+                    <div class="row">
+                        <div class="col-4 " v-for="post in posts" :key= "post.id" >
                         <PostCard   :post="post" :BaseUrl="BaseUrl">
                        
                         </PostCard>
                     </div>
+                    </div>
+                   
                     
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center my-3">
+                        <ul class="pagination">
+                            <li :class="currentPage == 1 ? 'disabled' :'page-item'">
+                            <button class="page-link btn btn-success" @click="getPost(currentPage - 1)">Prev</button>
+                            </li>
+                            <li :class="currentPage == i ? 'disabled' :'page-item'" v-for="i in lastPage">
+                            <button class="page-link " @click="getPost(i)">{{ i }}</button>
+                            </li>
+
+
+                            <li :class="currentPage == lastPage ? 'disabled' :'page-item'">
+                            <button class="page-link btn btn-success" @click="getPost(currentPage + 1)">next</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
