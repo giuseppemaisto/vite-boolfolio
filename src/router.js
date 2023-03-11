@@ -2,6 +2,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from './pages/HomePage.vue';
 import PostList from './pages/PostList.vue';
+import SinglePost from './pages/SinglePost.vue'
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -14,7 +16,14 @@ const router = createRouter({
             path: '/progetti',
             name: 'post_list',
             component: PostList
-        }
+        },
+        //rotta dettaglio post 
+       {
+            path:'/prodotti/:slug',//il nome del parametro deve conciderre con qeullo dato in api.php di laravel
+            name:'single_post',
+            component: SinglePost
+
+       }
     ]
 }); 
 export { router };
