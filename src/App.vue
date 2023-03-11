@@ -1,10 +1,10 @@
 <script>
-  import Header from './components/Header.vue'
-  import PostMain from './components/PostMain.vue';
+ import AppHeader from './components/AppHeader.vue'
+  
   export default{
     components:{
-      Header,
-      PostMain
+      AppHeader
+      
     }
   }
 
@@ -12,8 +12,8 @@
 
 <template>
   <div>
-    <Header></Header>
-    <PostMain></PostMain>
+  <AppHeader></AppHeader>
+    <router-view></router-view>
     
   </div>
   
