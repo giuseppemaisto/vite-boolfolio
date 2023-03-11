@@ -10,7 +10,7 @@ export default {
         return{
             posts: [],
             loading: true,
-            BaseUrl:"http://127.0.0.1:8000",
+            BaseUrl:"http://127.0.0.1:8002",
             currentPage: 1,
             lastPage: null,
         }
