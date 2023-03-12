@@ -1,4 +1,5 @@
 <script>
+
     export default{
         name: "PostCard",
         props:{
@@ -34,7 +35,7 @@
             </div>
 
             <div>
-                <a class="btn btn-success" href="#">leggi l'articolo</a>
+                <router-link :to = "{name: 'single-post', params:{slug:post.slug}}" class="btn btn-sm btn-success">leggil'articolo</router-link>
             </div>
         </div>
         

@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { store } from '../store';
 import PostCard from '../components/PostCard.vue';
 export default {
     name: "PostList",
@@ -8,9 +9,10 @@ export default {
     },
     data(){
         return{
+            store,
             posts: [],
             loading: true,
-            BaseUrl:"http://127.0.0.1:8002",
+            
             currentPage: 1,
             lastPage: null,
         }
@@ -18,7 +20,7 @@ export default {
     methods: {
         getPost(post_page){
             this.loading = true,
-            axios.get(`${this.BaseUrl}/api/posts`, {params: {page: post_page}}).then((response)=> {
+            axios.get(`${this.store.BaseUrl}/api/posts`, {params: {page: post_page}}).then((response)=> {
                 if(response.data.success){
                     this.posts = response.data.results.data;
                     this.currentPage = response.data.results.current_page;
