@@ -19,8 +19,8 @@ const router = createRouter({
         },
         //rotta dettaglio post 
        {
-            path:'/prodotti/:slug',//il nome del parametro deve conciderre con qeullo dato in api.php di laravel
-            name:'single_post',
+            path:'/progetti/:slug',//il nome del parametro deve conciderre con qeullo dato in api.php di laravel
+            name:'single-post',
             component: SinglePost
 
        }

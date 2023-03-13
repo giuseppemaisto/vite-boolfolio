@@ -1,56 +1,30 @@
+     
         <script>
-        import { store } from '../store';
-        import axios from 'axios';
+        import { store } from '../store'
+        import axios from 'axios'
         export default {
-            name: 'SinglePost',
-            data(){
-                return{
-                    store,
-                    post: null,
-                    loading: true,
-                }
-            }, 
-            mounted(){
-                this.loading = true; 
-                axios.get(`${this.store.BaseUrl}/api/posts/${this.$route.params.slug}`).then((response) =>{
-                    this.post = response.data.results;
-                    
-                })
+          name:'SinglePost',
+          data(){
+            return{
+                store,
+                post: null,
+                loading:true
             }
+          }, 
+          mounted(){
+            this.loading = true;
+            axios.get(`${this.store.BaseUrl}/api/posts/${this.$route.params.slug}`).then((response) =>{
+                this.post = response.data.post
+            })
+          }
         }
         </script>
-<template lang="">
-    <div class=container>
-       
-        <div class=row>
-            
-            <div  class="col-12">
-               
-                <div class="img">
-                    
-                </div>
-            </div>
-           
-            
+        <template lang="">
+        <div>
+            <h2>dettaglio post</h2>
         </div>
+     </template>
+  
+     <style lang="">
         
-    </div>
-</template>
-<style lang="scss" scoped>
-    .img{
-        width: 200px;
-    }
-    .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
+     </style>
