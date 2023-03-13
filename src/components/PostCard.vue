@@ -1,10 +1,15 @@
 <script>
-
+import { store } from '../store'
     export default{
         name: "PostCard",
         props:{
             post: Object,
-            BaseUrl: String,
+            
+        },
+        data(){
+            return{
+                store
+            }
         }
     }
 </script>
