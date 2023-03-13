@@ -19,7 +19,7 @@
                     this.loading = false
                 }
                 else{
-                    
+                    this.$router.push({ name: 'not-found' })
                 }
                 
             })
