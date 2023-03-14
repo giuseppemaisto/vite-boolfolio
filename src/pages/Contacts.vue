@@ -1,9 +1,28 @@
 <script>
+import axios from 'axios';
 export default {
     name: 'Contacts',
     data(){
         return{
-
+            name: '',
+            surname: '',
+            email: '',
+            phone: '',
+            message: ''
+        }
+    }, 
+    methods:{
+        sendForm(){
+            const data={
+                name: this.name,
+                surname: this.surname,
+                email: this.email,
+                phone: this.phone,
+                message: this.message
+            }
+            axios.post(`${this.store.BaseUrl}/api/contacts`, data).then((response) =>{
+                
+            })
         }
     }
 }
