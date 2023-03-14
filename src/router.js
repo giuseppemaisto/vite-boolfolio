@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.vue';
 import PostList from './pages/PostList.vue';
 import SinglePost from './pages/SinglePost.vue';
 import NotFound from './pages/NotFound.vue';
+import Contacts from './pages/Contacts.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -23,6 +24,12 @@ const router = createRouter({
             path:'/progetti/:slug',//il nome del parametro deve conciderre con qeullo dato in api.php di laravel
             name:'single-post',
             component: SinglePost
+
+       },
+       {
+            path:'/contatti',
+            name:'contacts',
+            component: Contacts
 
        },
        //pagina not-found deve essere sempre per ultima 

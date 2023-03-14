@@ -13,6 +13,10 @@
                         label: 'progetti',
                         routeName: 'post_list'
                         
+                    },
+                    {
+                        label: 'contatti',
+                        routeName: 'contacts'
                     }
                 ]
             }
