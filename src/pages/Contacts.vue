@@ -8,7 +8,8 @@ export default {
             surname: '',
             email: '',
             phone: '',
-            message: ''
+            message: '',
+            errors: null
         }
     }, 
     methods:{
@@ -21,7 +22,18 @@ export default {
                 message: this.message
             }
             axios.post(`${this.store.BaseUrl}/api/contacts`, data).then((response) =>{
-                
+                if(!this.success){
+                    this.errors = response.data.errors
+                }
+                else{
+                    //nel caso vado a svuotare queste info 
+                    this.name = '';
+                    this.surname = '';
+                    this.email = '';
+                    this.phone = '';
+                    this.message = '';
+
+                }
             })
         }
     }
