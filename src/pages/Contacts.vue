@@ -41,7 +41,11 @@ export default {
                     this.message = '';
                     this.success = true;
                     this.loading = false;
-                    this.errors = false
+                    this.errors = false;
+
+
+                    this.$router.push({ name: 'thank-you' })
+
 
                 }
             })
