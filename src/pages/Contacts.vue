@@ -1,9 +1,11 @@
 <script>
 import axios from 'axios';
+import { store } from '../store';
 export default {
     name: 'Contacts',
     data(){
         return{
+            store,
             name: '',
             surname: '',
             email: '',
@@ -84,7 +86,7 @@ export default {
              
                     <div class="col-12 my-5 ">
                         <h5 class="text-center text-white ">scrivici</h5>
-                        <form @submit="sendForm">
+                        <form @submit.prevent="sendForm">
                             <div class="row">
                                 <div class="col-12 col-md-6 my-2">
                                     <label class="control-label text-white" for="nome">Nome</label>
