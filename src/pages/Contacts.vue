@@ -11,7 +11,9 @@ export default {
             email: '',
             phone: '',
             message: '',
-            errors: null
+            errors: {},
+            success: false,
+            loading: false
         }
     }, 
     methods:{
@@ -21,11 +23,14 @@ export default {
                 surname: this.surname,
                 email: this.email,
                 phone: this.phone,
-                message: this.message
+                message: this.message,
+                
             }
+            this.loading = true;
             axios.post(`${this.store.BaseUrl}/api/contacts`, data).then((response) =>{
                 if(!response.data.success){
                     this.errors = response.data.errors
+                    this.loading = false
                 }
                 else{
                     //nel caso vado a svuotare queste info 
@@ -34,6 +39,9 @@ export default {
                     this.email = '';
                     this.phone = '';
                     this.message = '';
+                    this.success = true;
+                    this.loading = false;
+                    this.errors = false
 
                 }
             })
@@ -82,7 +90,9 @@ export default {
 
               
                 <div class="container">
-
+                    <div class="col-12 my-5 text-white" v-if="success">
+                        messaggio inviato con successo
+                    </div>
              
                     <div class="col-12 my-5 ">
                         <h5 class="text-center text-white ">scrivici</h5>
@@ -91,27 +101,39 @@ export default {
                                 <div class="col-12 col-md-6 my-2">
                                     <label class="control-label text-white" for="nome">Nome</label>
                                     <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" v-model="name">
+                                    <div v-for="(error, index) in errors.name" :key="`message-error-${index}`" class="text-white">
+                                    {{ error }}</div>
                                 </div>
                                 <div class="col-12 col-md-6 my-2">
                                     <label class="control-label text-white" for="cognome">cognome</label>
                                     <input type="text" class="form-control" name="cognome" id="cognome" placeholder="cognome" v-model="surname">
+                                    <div v-for="(error, index) in errors.surname" :key="`message-error-${index}`" class="text-white">
+                                    {{ error }}</div>
                                 </div>
                                 <div class="col-12 col-md-6 my-2">
                                     <label class="control-label text-white" for="email">Email</label>
                                     <input type="mail" class="form-control" name="email" id="email" placeholder="emaiil" v-model="email">
+                                    <div v-for="(error, index) in errors.email" :key="`message-error-${index}`" class="text-white">
+                                    {{ error }}</div>
                                 </div>
                                 <div class="col-12 col-md-6 my-2">
                                     <label class="control-label text-white" for="phone">telefono</label>
                                     <input type="phone" class="form-control" name="phone" id="phone" placeholder="phone" v-model="phone">
+                                    <div v-for="(error, index) in errors.phone" :key="`message-error-${index}`" class="text-white">
+                                    {{ error }}</div>
                                 </div>
                                 <div class="col-12 my-2">
                                     <label class="control-label text-white" for="messaggio">messaggio</label>
                                     <textarea class="form-control" name="messaggio" id="messaggio" placeholder="messaggio" v-model="message"></textarea>
+                                    <div v-for="(error, index) in errors.message" :key="`message-error-${index}`" class="text-white">
+                                    {{ error }}</div>
                                 </div>
                                 <div class="col-12 my-2 text-center">
-                                    <button type="submit" class="sand_email">Invia</button>
+                                    <button type="submit" class="sand_email" :disabled="loading">{{loading ? 'invio messaggio...': 'Invia'}}</button>
                                 </div>
-
+                                <div class="col-12 my-5 text-center text-white" v-if="success">
+                                     messaggio inviato con successo
+                                </div>
                             </div>
                             
                         </form>
