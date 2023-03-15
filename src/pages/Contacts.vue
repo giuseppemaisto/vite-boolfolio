@@ -24,7 +24,7 @@ export default {
                 message: this.message
             }
             axios.post(`${this.store.BaseUrl}/api/contacts`, data).then((response) =>{
-                if(!this.success){
+                if(!response.data.success){
                     this.errors = response.data.errors
                 }
                 else{
